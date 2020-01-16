@@ -1,0 +1,28 @@
+{
+  "src_folders" : ["tests"],
+  "test_settings" : {
+    "default" : {
+      "launch_url": "https://www.phptravels.net/admin"
+    },
+    "chrome": {
+      "webdriver" : {
+        "start_process": true,
+        "server_path": "node_modules/.bin/chromedriver",
+        "port": 9515
+      },
+      "desiredCapabilities": {
+        "browserName": "chrome"
+      }
+    },
+    "firefox": {
+      "webdriver" : {
+        "start_process": true,
+        "server_path": "node_modules/.bin/geckodriver",
+        "port": 4444
+      },
+      "desiredCapabilities": {
+        "browserName": "firefox"
+      }
+    }
+  }
+}
