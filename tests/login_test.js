@@ -3,28 +3,32 @@ const password = 'demoadmin'
 const URL = 'https://www.phptravels.net/admin'
 module.exports = {
   beforeEach: function (browser) {
-    browser
-      .url(browser.launch_url)
-    browser.expect.element('input[type="text"]').to.be.visible
-    browser.expect.element('input[type="password"]').to.be.visible
-    browser
-      .verify.valueContains('input[type="text"]', '')
-      .assert.valueContains('input[type="password"]', '')
+    let login = browser.page.login()
+    
+    login.navigate()
+    login.expect.element('@email').to.be.visible
+    login.expect.element('@password').to.be.visible
+    login
+      .verify.valueContains('@email', '')
+      .assert.valueContains('@password', '')
   },
   'should login with credentials': function (browser) {
+    // let login = browser.page.login()
+    // login.signIn(email, password)
     browser
-      .setValue('input[name="email"]', email)
-      .setValue('input[name="password"]', password)
-      .click('button[type="submit"]')
+      .login(email, password) //using custom command login
       .waitForElementVisible('body')
       .assert.elementPresent('.serverHeader')
   },
-  'should not login without email': function (browser) {
+  //todo: replace with sign in method
+  'should not login without email': '' + function (browser) {
+    let login = browser.page.login()
+    login
+      .verify.valueContains('@email', '')
+      .assert.valueContains('@password', '')
+      .setValue('@password', password)
+      .click('@submit')
     browser
-      .verify.valueContains('input[type="text"]', '')
-      .assert.valueContains('input[type="password"]', '')
-      .setValue('input[type="password"]', password)
-      .click('button[type="submit"]')
       .assert.not.elementPresent('.serverHeader')
     
   },

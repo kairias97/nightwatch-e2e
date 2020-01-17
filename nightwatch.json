@@ -2,6 +2,8 @@
   "src_folders": [
     "tests"
   ],
+  "page_objects_path": "page_object",
+  "custom_commands_path": "commands",
   "webdriver": {
     "start_process": true
   },
