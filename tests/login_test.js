@@ -20,14 +20,12 @@ module.exports = {
       .waitForElementVisible('body')
       .assert.elementPresent('.serverHeader')
   },
-  //todo: replace with sign in method
-  'should not login without email': '' + function (browser) {
+  'should not login without email': function (browser) {
     let login = browser.page.login()
     login
       .verify.valueContains('@email', '')
       .assert.valueContains('@password', '')
-      .setValue('@password', password)
-      .click('@submit')
+      .signIn('', password);
     browser
       .assert.not.elementPresent('.serverHeader')
     
